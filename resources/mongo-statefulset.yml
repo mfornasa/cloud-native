@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mongo
+  namespace: training
+spec:
+  serviceName: mongo
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongo
+  template:
+    metadata:
+      labels:
+        app: mongo
+        selector: mongo
+    spec:
+      volumes:
+        - name: mongodb-data
+          hostPath:
+            path: /tmp/mongodb
+      containers:
+      - name: mongo
+        image: mongo:4.0.8
+        volumeMounts:
+        - name: mongodb-data
+          mountPath: /data/db

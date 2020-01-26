@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: simpleapp
+  namespace: training
+  labels:
+    app: simpleapp
+data:
+  MONGO_HOST: mongo
+  MONGO_PORT: "27017"
+  MONGO_DATABASE: things
